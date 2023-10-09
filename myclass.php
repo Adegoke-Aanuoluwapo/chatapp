@@ -18,7 +18,7 @@ class Profile{
 
 $pro = new Profile();
 if(isset($_GET['type'])){extract($_GET);
- if($type=='signup'){$pro->SignUp($name,$email,$phone,$pass);
+ if($type=='signup'){$pro->SignUp($name, $email, $phone, $pass);
  }
 }
 
