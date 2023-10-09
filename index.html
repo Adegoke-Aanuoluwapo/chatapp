@@ -39,7 +39,7 @@
      </div>
     </div>
     <div class="class-footer">
-     <button class="btn btn-primary" onclick="AddUsser()" style="margin-left:110px;" name="signup">Sign Up</button>
+     <button class="btn btn-primary" onclick="AddUsser()" type="button" style="margin-left:110px;" name="signup">Sign Up</button>
     </div>
 
    </div>
@@ -56,17 +56,18 @@
    var name= document.getElementById('name').value;
    var email= document.getElementById('email').value;
    var phone= document.getElementById('phone').value;
-   var password= document.getElementById('password').value;
+   var pass= document.getElementById('password').value;
    
    $.ajax({
     type:'get',
-    url:'myclass.php?name='+name+'&email'+email+'&phone'+phone+'&password'+password+
-    'type=SignUp'
+    url:'myclass.php?name='+name+'&email'+email+'&phone'+phone+'&password'+pass+
+    '&type=signup'
    }).done(function(data){
-    console.log(data)
+    alert(data);
    });
+
   }
  </script>
- <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+ <script src="jquery.min.js"></script>
 </body>
 </html>
