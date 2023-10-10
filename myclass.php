@@ -11,8 +11,16 @@ class Profile{
  function SignUp($name, $email, $phone, $password){
   global $db;
   $pass = password_hash($password, PASSWORD_BCRYPT);
-  $sql = $db->query("INSERT INTO users(name, email, phone, password) VALUES('$name', '$email', '$phone', '$pass')");
-  if($sql){echo "operation successful";}
+  $sql = $db->query("SELECT  FROM users WHERE email = '$email' AND phone ='$phone'  ");
+  if(mysqli_num_rows($sql) >0){
+   echo "email or phone already exist";
+  }else{
+   $sql = $db->query("INSERT INTO users(name, email, phone, password) VALUES('$name', '$email', '$phone', '$pass')");
+   if ($sql) {
+    echo "operation successful";
+   }
+  }
+  
  }
 }
 
