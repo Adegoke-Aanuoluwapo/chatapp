@@ -25,7 +25,7 @@ class Profile{
 
  function LoginUser($email, $password){
   global $db;
-  $sql= $db->query("SELECT * FROM user WHERE email ='$email' ");
+  $sql= $db->query("SELECT * FROM users WHERE email ='$email' ");
   if(mysqli_num_rows($sql) != 1){
    echo "invalid login";
    return;
@@ -33,8 +33,8 @@ class Profile{
   $rows = mysqli_fetch_assoc($sql);
   if(password_verify($password, $rows['password'])){
    $_SESSION['id'] = $rows['id'];
-   header('location:chat.html');
-   echo 'login success';
+  // header('location: chat.html');
+   echo 'success';
    return;
   };
   echo 'invalid login';
@@ -47,5 +47,12 @@ if(isset($_GET['type'])){extract($_GET);
  if($type=='signup'){$pro->SignUp($name, $email, $phone, $password);
  }
 }
+if (isset($_GET['type'])) {
+ extract($_GET);
+ if ($type == 'login') {
+  $pro->LoginUser($email, $password);
+ }
+}
+
 
 
