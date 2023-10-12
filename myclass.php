@@ -1,57 +1,51 @@
 <?php
-$db = new mysqli('localhost', 'root', '', 'chatapp');
-
-
-class Profile{
- function __construct(){
-  
-
- }
-
- function SignUp($name, $email, $phone, $password){
-  global $db;
-  $pass = password_hash($password, PASSWORD_BCRYPT);
-  $sql = $db->query("SELECT * FROM users WHERE email = '$email' OR phone ='$phone'  ");
-  if(mysqli_num_rows($sql) > 0){
-   echo "email or phone already exist";
-  }else{
-   $sql = $db->query("INSERT INTO users (name, email, phone, password) VALUES('$name', '$email', '$phone', '$pass')");
-   if ($sql) {
-    echo "operation successful";
-   }
-  };
-  
- }
-
- function LoginUser($email, $password){
-  global $db;
-  $sql= $db->query("SELECT * FROM users WHERE email ='$email' ");
-  if(mysqli_num_rows($sql) != 1){
-   echo "invalid login";
-   return;
-  }
-  $rows = mysqli_fetch_assoc($sql);
-  if(password_verify($password, $rows['password'])){
-   $_SESSION['id'] = $rows['id'];
-  // header('location: chat.html');
-   echo 'success';
-   return;
-  };
-  echo 'invalid login';
-  return;
- }
-};
-
-$pro = new Profile();
+session_start(); ob_start();
+include('control.php');
 if(isset($_GET['type'])){extract($_GET);
- if($type=='signup'){$pro->SignUp($name, $email, $phone, $password);
- }
+
+
+ if($type=='signup'){$pro->SignUp($name, $email, $picture, $phone, $password); }
+
+
+ if($type=='login'){$pro->LogIn($email, $password); }
+
+ if($type=='contact'){
+    $id = $_SESSION['id'];
+$user = [];
+$sql = $db->query("SELECT * FROM user WHERE id != '$id' ORDER BY updated_at DESC ");
+while($row = mysqli_fetch_assoc($sql)){
+    $id = $row['id'];
+    $lastchat = $pro->lastChat($id);
+    $time = date('h:i A',$row['updated_at']);
+$user[] = ['id'=>$id,'email'=>$lastchat,'picture'=>$row['picture'],'name'=>$row['name'],'time'=>$time];
 }
-if (isset($_GET['type'])) {
- extract($_GET);
- if ($type == 'login') {
-  $pro->LoginUser($email, $password);
+echo json_encode($user);
  }
+
+
+if($type=='chat'){
+    $_SESSION['id2']=$id2;
+    $id = $_SESSION['id'];
+    $rows = array();
+    $sql = $db->query("SELECT * FROM chat WHERE (id='$id' AND id2='$id2') OR (id='$id2' AND id2='$id') ");
+    while($row = mysqli_fetch_assoc($sql)){ $rows[] = $row; }
+echo json_encode($rows);
+
+}
+
+
+if($type=='newchat'){
+    $pro->AddChat($chat);
+}
+
+
+if($type=='myid'){
+    echo $_SESSION['id'];
+}
+
+
+
+
 }
 
 

@@ -21,7 +21,7 @@
  </style>
 </head>
 <body>
- <form action="" method="POST">
+ <form action="" method="POST" enctype="multipart/form-data">
   <div class="container">
    <div class="card">
     <div class="card-header">
@@ -39,6 +39,12 @@
       <input type="email" class="form-control" name="email" id="email">
      </div>
     </div>
+     <div class="card-body">
+     <label >picture</label>
+     <div class="form-group">
+      <input type="file" class="form-control" name="picture" id="picture" accept="upload/png, upload/jpg, upload/jpeg">
+     </div>
+    </div>
     <div class="card-body">
      <label >Phone</label>
      <div class="form-group">
@@ -52,7 +58,7 @@
      </div>
     </div>
     <div class="class-footer">
-     <button class="btn btn-primary" onclick="AddUser()" type="button" style="margin-left:150px;" name="signup">Sign Up</button>
+     <button class="btn btn-primary" onclick="AddUsser()" type="button" style="margin-left:150px;" name="signup">Sign Up</button>
     </div>
 
    </div>
@@ -66,15 +72,16 @@
  <script src="jquery.min.js"></script>
 
  <script>
-  function AddUser(){
+  function AddUsser(){
    var name= document.getElementById('name').value;
    var email= document.getElementById('email').value;
    var phone= document.getElementById('phone').value;
    var pass= document.getElementById('password').value;
+  
    
    $.ajax({
     type:'get',
-    url:'myclass.php?name='+name+'&email='+email+'&phone='+phone+'&password='+pass+
+    url:'myclass.php?name='+name+'&email='+email+'&picture='+picture+'&phone='+phone+'&password='+pass+
     '&type=signup'
    }).done(function(data){
     alert(data);
