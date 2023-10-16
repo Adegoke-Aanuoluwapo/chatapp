@@ -61,14 +61,21 @@ class Profile
     }
     return $row['chat'];
   }
-  function addContact($email){
+  function addContact($email)
+  {
     global $db;
     $id = $_SESSION['id'];
     $sql = $db->query("SELECT * FROM users WHERE email ='$email' ");
+    if (mysqli_num_rows($sql) == 0) {
+      return 'Email not found';
+    }
     $rows = mysqli_fetch_assoc($sql);
-    $cid= $rows['id'];
-    $sql =$db->query("INSERT INTO contacts(id, cid) VALUES('$id', '$cid')");
-    return;
+    $cid = $rows['id'];
+    $sql = $db->query("INSERT INTO contacts(id, cid) VALUES('$id', '$cid')");
+    if(mysqli_num_rows($sql) >1){
+      echo "contact already exist";
+    }
+    return 'Operation Successful';
   }
 
   function AddChat($chat)

@@ -1,286 +1,277 @@
 <!DOCTYPE html>
-<html lang="en" >
-<head>
-  <meta charset="UTF-8">
-  <title>CodePen - Direct Messaging</title>
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" rel="stylesheet">
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>CodePen - Direct Messaging</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600"
+      rel="stylesheet"
+    />
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="tempusdominus-bootstrap-4.min.css">
-<link rel="stylesheet" href="style.css">
-
-</head>
-<body>
-<!-- partial:index.partial.html -->
-<div class="wrapper">
-    <div class="container">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="tempusdominus-bootstrap-4.min.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- partial:index.partial.html -->
+    <div class="wrapper">
+      <div class="container">
         <div class="left">
-            <div class="top">
-                <input type="text" placeholder="Search" />
-                <a href="javascript:;" class="search"></a>
-            </div>
-            <ul class="people" id="people">
-              
-             
-               
-            </ul>
+          <div class="top">
+            <input type="text" placeholder="Search" />
+            <a href="javascript:;" class="search"></a>
+          </div>
+          <ul class="people" id="people"></ul>
         </div>
-        <div style="margin-left: 70px;">
-            <form action="" method="POST">
-            <input type="text" name="email" id="email">
+        <div style="margin-left: 70px">
+          <form method="POST">
+            <input type="text" name="email" id="email" />
             <button type="button" onclick="addContact()">Add Contact</button>
-            </form>
+          </form>
         </div>
         <div class="right">
-            <div class="top"><span>To: <span class="name" id="activeUser">Select User...</span></span></div>
-            <div class="chat" data-chat="person1">
-                <div class="conversation-start">
-                    <span>Today, 6:48 AM</span>
-                </div>
-                <div class="bubble you">
-                    Hello,
-                </div>
-                <div class="bubble you">
-                    it's me.
-                </div>
-                <div class="bubble you">
-                    I was wondering...
-                </div>
+          <div class="top">
+            <span
+              >To:
+              <span class="name" id="activeUser">Select User...</span></span
+            >
+          </div>
+          <div class="chat" data-chat="person1">
+            <div class="conversation-start">
+              <span>Today, 6:48 AM</span>
             </div>
-            <div class="chat" data-chat="person2" id="allchat">
-                <div class="conversation-start">
-                    <span>Today, 5:38 PM</span>
-                </div>
-                <div class="bubble you">
-                    Hello, can you hear me?
-                </div>
-                <div class="bubble you">
-                    I'm in California dreaming
-                </div>
-                <div class="bubble me">
-                    ... about who we used to be.
-                </div>
-                <div class="bubble me">
-                    Are you serious?
-                </div>
-                <div class="bubble you">
-                    When we were younger and free...
-                </div>
-                <div class="bubble you">
-                    I've forgotten how it felt before
-                </div>
+            <div class="bubble you">Hello,</div>
+            <div class="bubble you">it's me.</div>
+            <div class="bubble you">I was wondering...</div>
+          </div>
+          <div class="chat" data-chat="person2" id="allchat">
+            <div class="conversation-start">
+              <span>Today, 5:38 PM</span>
             </div>
-            <div class="chat" data-chat="person3">
-                <div class="conversation-start">
-                    <span>Today, 3:38 AM</span>
-                </div>
-                <div class="bubble you">
-                    Hey human!
-                </div>
-                <div class="bubble you">
-                    Umm... Someone took a shit in the hallway.
-                </div>
-                <div class="bubble me">
-                    ... what.
-                </div>
-                <div class="bubble me">
-                    Are you serious?
-                </div>
-                <div class="bubble you">
-                    I mean...
-                </div>
-                <div class="bubble you">
-                    It’s not that bad...
-                </div>
-                <div class="bubble you">
-                    But we’re probably gonna need a new carpet.
-                </div>
+            <div class="bubble you">Hello, can you hear me?</div>
+            <div class="bubble you">I'm in California dreaming</div>
+            <div class="bubble me">... about who we used to be.</div>
+            <div class="bubble me">Are you serious?</div>
+            <div class="bubble you">When we were younger and free...</div>
+            <div class="bubble you">I've forgotten how it felt before</div>
+          </div>
+          <div class="chat" data-chat="person3">
+            <div class="conversation-start">
+              <span>Today, 3:38 AM</span>
             </div>
-            <div class="chat" data-chat="person4">
-                <div class="conversation-start">
-                    <span>Yesterday, 4:20 PM</span>
-                </div>
-                <div class="bubble me">
-                    Hey human!
-                </div>
-                <div class="bubble me">
-                    Umm... Someone took a shit in the hallway.
-                </div>
-                <div class="bubble you">
-                    ... what.
-                </div>
-                <div class="bubble you">
-                    Are you serious?
-                </div>
-                <div class="bubble me">
-                    I mean...
-                </div>
-                <div class="bubble me">
-                    It’s not that bad...
-                </div>
+            <div class="bubble you">Hey human!</div>
+            <div class="bubble you">
+              Umm... Someone took a shit in the hallway.
             </div>
-            <div class="chat" data-chat="person5">
-                <div class="conversation-start">
-                    <span>Today, 6:28 AM</span>
-                </div>
-                <div class="bubble you">
-                    Wasup
-                </div>
-                <div class="bubble you">
-                    Wasup
-                </div>
-                <div class="bubble you">
-                    Wasup for the third time like is <br />you blind bitch
-                </div>
-
+            <div class="bubble me">... what.</div>
+            <div class="bubble me">Are you serious?</div>
+            <div class="bubble you">I mean...</div>
+            <div class="bubble you">It’s not that bad...</div>
+            <div class="bubble you">
+              But we’re probably gonna need a new carpet.
             </div>
-            <div class="chat" data-chat="person6">
-                <div class="conversation-start">
-                    <span>Monday, 1:27 PM</span>
-                </div>
-                <div class="bubble you">
-                    So, how's your new phone?
-                </div>
-                <div class="bubble you">
-                    You finally have a smartphone :D
-                </div>
-                <div class="bubble me">
-                    Drake?
-                </div>
-                <div class="bubble me">
-                    Why aren't you answering?
-                </div>
-                <div class="bubble you">
-                    howdoyoudoaspace
-                </div>
+          </div>
+          <div class="chat" data-chat="person4">
+            <div class="conversation-start">
+              <span>Yesterday, 4:20 PM</span>
             </div>
-            <div class="write">
-                <a href="javascript:;" class="write-link attach"></a>
-                <input id="chat" type="text"  onchange="newChat()" />
-                <a href="javascript:;" class="write-link smiley"></a>
-                <a href="javascript:;" onclick="newChat()" class="write-link send"></a>
+            <div class="bubble me">Hey human!</div>
+            <div class="bubble me">
+              Umm... Someone took a shit in the hallway.
             </div>
+            <div class="bubble you">... what.</div>
+            <div class="bubble you">Are you serious?</div>
+            <div class="bubble me">I mean...</div>
+            <div class="bubble me">It’s not that bad...</div>
+          </div>
+          <div class="chat" data-chat="person5">
+            <div class="conversation-start">
+              <span>Today, 6:28 AM</span>
+            </div>
+            <div class="bubble you">Wasup</div>
+            <div class="bubble you">Wasup</div>
+            <div class="bubble you">
+              Wasup for the third time like is <br />you blind bitch
+            </div>
+          </div>
+          <div class="chat" data-chat="person6">
+            <div class="conversation-start">
+              <span>Monday, 1:27 PM</span>
+            </div>
+            <div class="bubble you">So, how's your new phone?</div>
+            <div class="bubble you">You finally have a smartphone :D</div>
+            <div class="bubble me">Drake?</div>
+            <div class="bubble me">Why aren't you answering?</div>
+            <div class="bubble you">howdoyoudoaspace</div>
+          </div>
+          <div class="write">
+            <a href="javascript:;" class="write-link attach"></a>
+            <input id="chat" type="text" onchange="newChat()" />
+            <a href="javascript:;" class="write-link smiley"></a>
+            <a
+              href="javascript:;"
+              onclick="newChat()"
+              class="write-link send"
+            ></a>
+          </div>
         </div>
+      </div>
     </div>
-</div>
-<!-- partial -->
-<script src="bootstrap.bundle.min.js"></script>
-  <script  src="script.js"></script>
-   <script src="jquery.min.js"></script>
-<script>
-function loadContact(){
-    $('#people').html('');
-$.ajax({
-    type: 'get',
-    url: 'myclass.php?type=contact'
-}).done(function(data){
-    var user = JSON.parse(data);
-//alert(data);
-var i = 0;
-while(i < user.length){
-$('#people').append(person(user[i]['name'],user[i]['email'],user[i]['picture'],user[i]['time'],user[i]['id']));
-i++;
-}
-});
-}
-loadContact();
+    <!-- partial -->
+    <script src="bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+    <script src="jquery.min.js"></script>
+    <script>
+      function loadContact() {
+        $("#people").html("");
+        $.ajax({
+          type: "get",
+          url: "myclass.php?type=contact",
+        }).done(function (data) {
+          var user = JSON.parse(data);
+          //alert(data);
+          var i = 0;
+          while (i < user.length) {
+            $("#people").append(
+              person(
+                user[i]["name"],
+                user[i]["email"],
+                user[i]["picture"],
+                user[i]["time"],
+                user[i]["id"]
+              )
+            );
+            i++;
+          }
+        });
+      }
+      loadContact();
 
-function person(name,email,picture,time,id){
-return `<li onclick="activeUser('`+id+`','`+name+`')" class="person" data-chat="person6" id="user`+id+`">
-                    <img src="`+picture+`" alt="" />
-                    <span class="name">`+name+`</span>
-                    <span class="time">`+time+`</span>
-                    <span class="preview" id="prev`+id+`">`+email+`</span>
-                </li>`;
-}
+      function person(name, email, picture, time, id) {
+        return (
+          `<li onclick="activeUser('` +
+          id +
+          `','` +
+          name +
+          `')" class="person" data-chat="person6" id="user` +
+          id +
+          `">
+                    <img src="` +
+          picture +
+          `" alt="" />
+                    <span class="name">` +
+          name +
+          `</span>
+                    <span class="time">` +
+          time +
+          `</span>
+                    <span class="preview" id="prev` +
+          id +
+          `">` +
+          email +
+          `</span>
+                </li>`
+        );
+      }
 
-function lastUser(){
- var id = localStorage.getItem('activeid');
- var name = localStorage.getItem('activename'); 
-   activeUser(id,name);
-}
+      function lastUser() {
+        var id = localStorage.getItem("activeid");
+        var name = localStorage.getItem("activename");
+        activeUser(id, name);
+      }
 
-lastUser();
+      lastUser();
 
-function activeUser(id,name){
-    localStorage.setItem('activeid',id);
-    localStorage.setItem('activename',name);
-    myId();
-$('#activeUser').html(name);
-$('#allchat').html('');
-$.ajax({
-    type: 'get',
-     url: 'myclass.php?id2='+id+'&type=chat'
-}).done(function(data){
-    //do something with data
-  var chat = JSON.parse(data);
-//alert(data);
-var i = 0;
-while(i < chat.length){
-$('#allchat').append(allChats(chat[i]['id'],chat[i]['id2'],chat[i]['chat']));
-i++;
-}
-})
-document.getElementById('chat').focus();
-}
+      function activeUser(id, name) {
+        localStorage.setItem("activeid", id);
+        localStorage.setItem("activename", name);
+        myId();
+        $("#activeUser").html(name);
+        $("#allchat").html("");
+        $.ajax({
+          type: "get",
+          url: "myclass.php?id2=" + id + "&type=chat",
+        }).done(function (data) {
+          //do something with data
+          var chat = JSON.parse(data);
+          //alert(data);
+          var i = 0;
+          while (i < chat.length) {
+            $("#allchat").append(
+              allChats(chat[i]["id"], chat[i]["id2"], chat[i]["chat"])
+            );
+            i++;
+          }
+        });
+        document.getElementById("chat").focus();
+      }
 
-function myId(){
-    $.ajax({
-        type: 'get',
-        url: 'myclass.php?type=myid'
-    }).done(function(data){
-       localStorage.setItem('myid',data);
-    });
-}
+      function myId() {
+        $.ajax({
+          type: "get",
+          url: "myclass.php?type=myid",
+        }).done(function (data) {
+          localStorage.setItem("myid", data);
+        });
+      }
 
-//myId();
+      //myId();
 
-function allChats(id,id2,chat){
-   var myid = localStorage.getItem('myid');
+      function allChats(id, id2, chat) {
+        var myid = localStorage.getItem("myid");
 
-if(Number(myid)==id){
-return `<div class="bubble me">
-                    `+chat+`
+        if (Number(myid) == id) {
+          return (
+            `<div class="bubble me">
+                    ` +
+            chat +
+            `
+                </div>`
+          );
+        } else {
+          return (
+            `<div class="bubble you">
+                    ` +
+            chat +
+            `
+                </div>`
+          );
+        }
+      }
+
+      function newChat() {
+        var chat = document.getElementById("chat").value;
+        var id2 = localStorage.getItem("activeid");
+        $.ajax({
+          type: "get",
+          url: "myclass.php?chat=" + chat + "&type=newchat",
+        }).done(function (data) {
+          //do something with data here;
+          var x =
+            `<div class="bubble me">
+                    ` +
+            chat +
+            `
                 </div>`;
-}else{
- return `<div class="bubble you">
-                    `+chat+`
-                </div>`;   
-}
-}
+          $("#allchat").append(x);
+          $("#prev" + id2).html(x);
+          document.getElementById("chat").value = "";
+          document.getElementById("chat").focus();
+        });
+        loadContact();
+        //document.getElementById('user'+id2).style.display='none';
+      }
 
-
-function newChat(){
-var chat = document.getElementById('chat').value;
-var id2 = localStorage.getItem('activeid');
-$.ajax({
-    type: 'get',
-    url: 'myclass.php?chat='+chat+'&type=newchat'
-}).done(function(data){
-    //do something with data here;
-var x = `<div class="bubble me">
-                    `+chat+`
-                </div>`;
-    $('#allchat').append(x);
-    $('#prev'+id2).html(x);
-document.getElementById('chat').value='';
-document.getElementById('chat').focus();
-});
-loadContact();
-//document.getElementById('user'+id2).style.display='none';
-}
-
-function addContact(){
-   
-    var email = document.getElementById('email').value;
-
-    $.ajax({
-       type: 'get',
-       url:'myclass.php?email'+email+'&type=addcontact' 
-    }).done(function(data  ){
-              alert(data)
-    })
-}
-</script>
-</body>
+      function addContact() {
+        var email = document.getElementById("email").value;
+        // alert(email);
+        $.ajax({
+          type: "get",
+          url: "myclass.php?email=" + email + "&type=addcontact",
+        }).done(function (data) {
+          alert(data);
+        });
+      }
+    </script>
+  </body>
 </html>
