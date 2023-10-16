@@ -4,7 +4,7 @@ include('control.php');
 if(isset($_GET['type'])){extract($_GET);
 
 
- if($type=='signup'){$pro->SignUp($name, $email, $picture, $phone, $password); }
+ if($type=='signup'){$pro->SignUp($name, $email, $phone, $password); }
 
 
  if($type=='login'){$pro->LogIn($email, $password); }
@@ -12,7 +12,7 @@ if(isset($_GET['type'])){extract($_GET);
  if($type=='contact'){
     $id = $_SESSION['id'];
 $user = [];
-$sql = $db->query("SELECT * FROM user WHERE id != '$id' ORDER BY updated_at DESC ");
+$sql = $db->query("SELECT * FROM users WHERE id != '$id' ORDER BY updated_at DESC ");
 while($row = mysqli_fetch_assoc($sql)){
     $id = $row['id'];
     $lastchat = $pro->lastChat($id);

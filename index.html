@@ -39,12 +39,7 @@
       <input type="email" class="form-control" name="email" id="email">
      </div>
     </div>
-     <div class="card-body">
-     <label >picture</label>
-     <div class="form-group">
-      <input type="file" class="form-control" name="picture" id="picture" accept="upload/png, upload/jpg, upload/jpeg">
-     </div>
-    </div>
+    
     <div class="card-body">
      <label >Phone</label>
      <div class="form-group">
@@ -81,7 +76,7 @@
    
    $.ajax({
     type:'get',
-    url:'myclass.php?name='+name+'&email='+email+'&picture='+picture+'&phone='+phone+'&password='+pass+
+    url:'myclass.php?name='+name+'&email='+email+'&phone='+phone+'&password='+pass+
     '&type=signup'
    }).done(function(data){
     alert(data);
