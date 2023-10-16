@@ -61,6 +61,14 @@ class Profile
     }
     return $row['chat'];
   }
+  function addContact(){
+    global $db;
+    $id = $_SESSION['id'];
+    $cid = $id;
+    $sql = $db->query("SELECT * FROM users WHERE email ='$cid' ");
+    $rows = mysqli_fetch_assoc($sql);
+    return $rows['id'];
+  }
 
   function AddChat($chat)
   {
