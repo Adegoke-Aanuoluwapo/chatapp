@@ -27,8 +27,8 @@
         </div>
         <div style="margin-left: 70px;">
             <form action="" method="POST">
-            <input type="text" name="email">
-            <button type="button">Add Contact</button>
+            <input type="text" name="email" id="email">
+            <button type="button" onclick="addContact()">Add Contact</button>
             </form>
         </div>
         <div class="right">
@@ -247,6 +247,17 @@ return `<div class="bubble me">
                     `+chat+`
                 </div>`;   
 }
+}
+function addContact(){
+    var id = localStorage.getItem('activeid');
+    var email = document.getElementById('email');
+
+    $.ajax({
+       type: 'get',
+       url:'myclass.php?id='+id+'&email'+email+'&type=addcontact' 
+    }).done(function(){
+        data        
+    })
 }
 
 function newChat(){
