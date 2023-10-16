@@ -248,17 +248,7 @@ return `<div class="bubble me">
                 </div>`;   
 }
 }
-function addContact(){
-    var id = localStorage.getItem('activeid');
-    var email = document.getElementById('email');
 
-    $.ajax({
-       type: 'get',
-       url:'myclass.php?id='+id+'&email'+email+'&type=addcontact' 
-    }).done(function(){
-        data        
-    })
-}
 
 function newChat(){
 var chat = document.getElementById('chat').value;
@@ -278,6 +268,18 @@ document.getElementById('chat').focus();
 });
 loadContact();
 //document.getElementById('user'+id2).style.display='none';
+}
+
+function addContact(){
+   
+    var email = document.getElementById('email').value;
+
+    $.ajax({
+       type: 'get',
+       url:'myclass.php?email'+email+'&type=addcontact' 
+    }).done(function(data  ){
+              alert(data)
+    })
 }
 </script>
 </body>

@@ -5,9 +5,6 @@ if(isset($_GET['type'])){extract($_GET);
 
 
  if($type=='signup'){$pro->SignUp($name, $email, $phone, $password); }
-if($type=='addcontact'){
-    $pro->addContact($id, $cid);
-}
 
  if($type=='login'){$pro->LogIn($email, $password); }
 
@@ -46,6 +43,9 @@ if($type=='myid'){
 }
 
 
+    if ($type == 'addcontact') {
+        $pro->addContact($email);
+    }
 
 
 }
