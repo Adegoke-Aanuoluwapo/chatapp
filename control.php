@@ -72,11 +72,10 @@ class Profile
     $rows = mysqli_fetch_assoc($sql);
     $cid = $rows['id'];
     $sql = $db->query("SELECT * FROM contacts WHERE cid ='$cid' ");
-    if (mysqli_num_rows($sql) > 0){
+    if (mysqli_num_rows($sql) > 0) {
       return "contact already exist";
-    }else{
+    } else {
       $sql = $db->query("INSERT INTO contacts(id, cid) VALUES('$id', '$cid')");
-
     }
     return 'Operation Successful';
   }
@@ -92,15 +91,24 @@ class Profile
     $db->query("SELECT * FROM chat WHERE id='$id' OR id2='$id2'");
     echo 1;
   }
-  function Contact(){
+  function myContact()
+  {
     global $db;
     $id = $_SESSION['id'];
-    $sql =$db->query("SELECT * FROM contacts WHERE id = '$id'");
-    while($rows = mysqli_fetch_assoc($sql)){
+    $contact = [];
+    $sql = $db->query("SELECT * FROM contacts WHERE id = '$id'");
+    while ($rows = mysqli_fetch_assoc($sql)) {
       $contact[] = $rows['cid'];
-      
     }
-      return $contact;
+    return $contact;
+  }
+
+  function userName($id)
+  {
+    global $db;
+    $sql = $db->query("SELECT * FROM users WHERE id='$id' ");
+    $row = mysqli_fetch_assoc($sql);
+    return $row['name'];
   }
 };
 
