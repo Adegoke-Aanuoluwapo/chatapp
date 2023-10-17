@@ -93,7 +93,14 @@ class Profile
     echo 1;
   }
   function Contact(){
-    
+    global $db;
+    $id = $_SESSION['id'];
+    $sql =$db->query("SELECT * FROM contacts WHERE id = '$id'");
+    while($rows = mysqli_fetch_assoc($sql)){
+      $contact[] = $rows['cid'];
+      
+    }
+      return $contact;
   }
 };
 
