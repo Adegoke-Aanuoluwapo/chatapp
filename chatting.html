@@ -206,6 +206,37 @@
         document.getElementById("chat").focus();
       }
 
+      function newMessage(id, name) {
+        localStorage.setItem("activeid", id);
+        localStorage.setItem("activename", name);
+        myId();
+
+        $.ajax({
+          type: "get",
+          url: "myclass.php?id2=" + id + "&type=chatnew",
+        }).done(function (data) {
+          //do something with data
+          var chat = JSON.parse(data);
+          //alert(data);
+          var i = 0;
+          while (i < chat.length) {
+            if (Number(chat[i]["id"]) != Number(myId())) {
+              $("#allchat").append(
+                allChats(chat[i]["id"], chat[i]["id2"], chat[i]["chat"])
+              );
+            }
+            i++;
+          }
+        });
+        document.getElementById("chat").focus();
+      }
+
+      setInterval(function () {
+        var id = localStorage.getItem("activeid");
+        var name = localStorage.getItem("activename");
+        newMessage(id, name);
+      }, 3000);
+
       function myId() {
         $.ajax({
           type: "get",

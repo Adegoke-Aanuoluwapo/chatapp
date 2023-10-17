@@ -34,10 +34,29 @@ if (isset($_GET['type'])) {
     if ($type == 'chat') {
         $_SESSION['id2'] = $id2;
         $id = $_SESSION['id'];
+        $type = $pro->userName($id2, 'member');
         $rows = array();
-        $sql = $db->query("SELECT * FROM chat WHERE (id='$id' AND id2='$id2') OR (id='$id2' AND id2='$id') ");
+        $sql = $type == 0 ? $db->query("SELECT * FROM chat WHERE (id='$id' AND id2='$id2') OR (id='$id2' AND id2='$id') ") : $db->query("SELECT * FROM chat WHERE id2='$id2' ");
         while ($row = mysqli_fetch_assoc($sql)) {
-            $rows[] = $row;
+            $chat = $id == $row['id'] ? $row['chat'] : $pro->userName($row['id']) . ': ' . $row['chat'];
+            $rows[] = $type == 0 ? $row : ['id' => $row['id'], 'id2' => $row['id2'], 'chat' => $chat];
+        }
+        echo json_encode($rows);
+    }
+
+    if ($type == 'chatnew') {
+        $_SESSION['id2'] = $id2;
+        $id = $_SESSION['id'];
+        $type = $pro->userName($id2, 'member');
+        $rows = array();
+        $sql = $type == 0 ? $db->query("SELECT * FROM chat WHERE (id='$id' AND id2='$id2') OR (id='$id2' AND id2='$id') AND status=0 ") : $db->query("SELECT * FROM chat WHERE id2='$id2' AND status=0 ");
+        while ($row = mysqli_fetch_assoc($sql)) {
+            $sn = $row['sn'];
+            if ($id != $row['id']) {
+                $db->query("UPDATE chat SET status=1 WHERE sn='$sn' ");
+            }
+            $chat = $id == $row['id'] ? $row['chat'] : $pro->userName($row['id']) . ': ' . $row['chat'];
+            $rows[] = $type == 0 ? $row : ['id' => $row['id'], 'id2' => $row['id2'], 'chat' => $chat];
         }
         echo json_encode($rows);
     }

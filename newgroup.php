@@ -16,9 +16,10 @@ if (isset($_POST['CreateGroup'])) {
   $gid = rand();
   $x = json_encode($member);
   $db->query("INSERT INTO users (name,member,email,admin) VALUES ('$name','$x','$gid','$id') ");
-  $cid = mysqli_get_i
+  $cid = mysqli_insert_id($db);
   $i = 0;
-  while($i<count($member)){$e = $i++;
+  while ($i < count($member)) {
+   $e = $i++;
    $id = $member[$e];
    $sql = $db->query("INSERT INTO contacts(id, cid) VALUES('$id', '$cid')");
   }

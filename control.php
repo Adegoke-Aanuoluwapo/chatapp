@@ -103,12 +103,12 @@ class Profile
     return $contact;
   }
 
-  function userName($id)
+  function userName($id, $col = 'name')
   {
     global $db;
     $sql = $db->query("SELECT * FROM users WHERE id='$id' ");
     $row = mysqli_fetch_assoc($sql);
-    return $row['name'];
+    return $row[$col];
   }
 };
 
