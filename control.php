@@ -71,9 +71,12 @@ class Profile
     }
     $rows = mysqli_fetch_assoc($sql);
     $cid = $rows['id'];
-    $sql = $db->query("INSERT INTO contacts(id, cid) VALUES('$id', '$cid')");
-    if(mysqli_num_rows($sql) >1){
-      echo "contact already exist";
+    $sql = $db->query("SELECT * FROM contacts WHERE cid ='$cid' ");
+    if (mysqli_num_rows($sql) > 0){
+      return "contact already exist";
+    }else{
+      $sql = $db->query("INSERT INTO contacts(id, cid) VALUES('$id', '$cid')");
+
     }
     return 'Operation Successful';
   }
@@ -88,6 +91,9 @@ class Profile
     $db->query("UPDATE users SET updated_at='$time' WHERE id='$id2' ");
     $db->query("SELECT * FROM chat WHERE id='$id' OR id2='$id2'");
     echo 1;
+  }
+  function Contact(){
+    
   }
 };
 
