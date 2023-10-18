@@ -71,7 +71,7 @@ class Profile
     }
     $rows = mysqli_fetch_assoc($sql);
     $cid = $rows['id'];
-    $sql = $db->query("SELECT * FROM contacts WHERE cid ='$cid' ");
+    $sql = $db->query("SELECT * FROM contacts WHERE id ='$id' AND cid ='$cid' ");
     if (mysqli_num_rows($sql) > 0) {
       return "contact already exist";
     } else {

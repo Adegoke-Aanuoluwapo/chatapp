@@ -14,7 +14,8 @@ if (isset($_POST['change'])) {
 
     move_uploaded_file($_FILES['picture']['tmp_name'], $targetfile);
     $db->query("UPDATE users SET  picture='$targetfile' WHERE id='$id' ");
-    echo 'Success ' . $_SESSION['id'];
+    header("chatting.html");
+
 }
 
 echo json_encode($pro->myContact());
