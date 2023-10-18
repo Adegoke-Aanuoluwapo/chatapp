@@ -75,6 +75,27 @@ if (isset($_GET['type'])) {
         echo $pro->addContact($email);
     }
     if($type =='search'){
-        echo $pro->searchContact($name);
+       // echo $pro->searchContact($name);
+       $input = $_POST['input'];
+       $query = "SELECT * FROM users WHERE name LIKE '{$input}%'";
+       $result =mysqli_query($db, $query);
+       if(mysqli_num_rows($result)>0){?>
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                 <th>Name</th>
+                  <th>Email</th>
+                 
+        </tr>
+        </thead>
+        <?php
+        while($row = mysqli_fetch_assoc($result)){ ?>
+
+      <?php  }
+            ?>
+        </tbody>
+    </table>   
+    }
     }
 }
