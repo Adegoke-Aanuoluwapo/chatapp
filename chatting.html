@@ -305,32 +305,32 @@
           alert(data);
         });
       }
-      // function mySearch(){
-      //   var search = document.getElementById("search").value;
-      //   $.ajax({
-      //     type: "get",
-      //     url: "myclass.php?search="+search+"$type=search",
-      //   }).done(function(data){
-      //     alert(data);
-      //   });
-     // }
-     $(document).ready(function(){
-      $("#search").keyup(function(){
-        var input = $(this).val();
-        //alert(input);
-        if(input !=""){
-          url:"myclass.php",
-          method="POST",
-          data : {input:input},
+      function mySearch(){
+        var search = document.getElementById("search").value;
+        $.ajax({
+          type: "get",
+          url: "myclass.php?search="+search+"$type=search",
+        }).done(function(data){
+          alert(data);
+        });
+     }
+    //  $(document).ready(function(){
+    //   $("#search").keyup(function(){
+    //     var input = $(this).val();
+    //     //alert(input);
+    //     if(input !=""){
+    //       url:"myclass.php",
+    //       method="POST",
+    //       data : {input:input},
 
-          success:function(data){
-            $("#searchresult").html(data);
-          }
-        }else{
-          $("#searchresult").css("display", "none");
-        }
-      });
-     })
+    //       success:function(data){
+    //         $("#searchresult").html(data);
+    //       }
+    //     }else{
+    //       $("#searchresult").css("display", "none");
+    //     }
+    //   });
+    //  })
     </script>
   </body>
 </html>

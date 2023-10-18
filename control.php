@@ -102,10 +102,10 @@ class Profile
     }
     return $contact;
   }
-  function searchContact(){
+  function searchContact($name){
     global $db;
     $id = $_SESSION['id'];
-    $sql=$db->query("SELECT * FROM contacts WHERE id = '$id");
+    $sql=$db->query("SELECT * FROM contacts WHERE cid LIKE '{$name}%'");
     while($rows=mysqli_fetch_assoc($sql)){
       $search[] = $rows['cid'];
     }
