@@ -74,4 +74,7 @@ if (isset($_GET['type'])) {
     if ($type == 'addcontact') {
         echo $pro->addContact($email);
     }
+    if($type =='search'){
+        echo $pro->searchContact($name);
+    }
 }

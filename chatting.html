@@ -18,8 +18,10 @@
       <div class="container">
         <div class="left">
           <div class="top">
-            <input type="text" placeholder="Search" />
+            <form action="">
+            <input type="text" placeholder="Search" id="search" onkeyup="mySearch()"  />
             <a href="javascript:;" class="search"></a>
+            </form>
           </div>
           <ul class="people" id="people"></ul>
         </div>
@@ -300,6 +302,15 @@
           type: "get",
           url: "myclass.php?email=" + email + "&type=addcontact",
         }).done(function (data) {
+          alert(data);
+        });
+      }
+      function mySearch(){
+        var search = document.getElementById("search").value;
+        $.ajax({
+          type: "get",
+          url: "myclass.php?search="+search+"$type=search",
+        }).done(function(data){
           alert(data);
         });
       }
