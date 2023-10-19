@@ -17,11 +17,12 @@ if (isset($_GET['type'])) {
     if ($type == 'contact') {
         $id = $_SESSION['id'];
         $user = [];
-        $sql = $db->query("SELECT * FROM users WHERE id != '$id' ORDER BY updated_at DESC ");
+        $sql = $db->query("SELECT * FROM users WHERE id != '$id' AND name LIKE '%$search%' ORDER BY updated_at DESC ");
         while ($row = mysqli_fetch_assoc($sql)) {
             $id = $row['id'];
             $lastchat = $pro->lastChat($id);
             $contact = $pro->myContact();
+           
             $time = date('h:i A', $row['updated_at']);
             if (in_array($id, $contact)) {
                 $user[] = ['id' => $id, 'email' => $lastchat, 'picture' => $row['picture'], 'name' => $row['name'], 'time' => $time];
@@ -74,7 +75,5 @@ if (isset($_GET['type'])) {
     if ($type == 'addcontact') {
         echo $pro->addContact($email);
     }
-   if($type == 'search'){
-     echo $pro->searchContact($name);
-   }
+  
 }

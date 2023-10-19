@@ -19,8 +19,13 @@
         <div class="left">
           <div class="top">
             <form action="">
-            <input type="text" placeholder="Search" id="search"   />
-            <div id="searchresult"></div>
+              <input
+                type="text"
+                placeholder="Search"
+                id="search"
+                onkeyup="mySearch(this.value)"
+              />
+              <div id="searchresult"></div>
             </form>
           </div>
           <ul class="people" id="people"></ul>
@@ -124,11 +129,11 @@
     <script src="script.js"></script>
     <script src="jquery.min.js"></script>
     <script>
-      function loadContact() {
+      function loadContact(search='') {
         $("#people").html("");
         $.ajax({
           type: "get",
-          url: "myclass.php?type=contact",
+          url: "myclass.php?type=contact&search"+search,
         }).done(function (data) {
           var user = JSON.parse(data);
           //alert(data);
@@ -233,11 +238,11 @@
         document.getElementById("chat").focus();
       }
 
-      setInterval(function () {
-        var id = localStorage.getItem("activeid");
-        var name = localStorage.getItem("activename");
-        newMessage(id, name);
-      }, 3000);
+      // setInterval(function () {
+      //   var id = localStorage.getItem("activeid");
+      //   var name = localStorage.getItem("activename");
+      //   newMessage(id, name);
+      // }, 3000);
 
       function myId() {
         $.ajax({
@@ -305,32 +310,61 @@
           alert(data);
         });
       }
-      function mySearch(){
+      function mySearch() {
         var search = document.getElementById("search").value;
+        //alert(search)
         $.ajax({
           type: "get",
-          url: "myclass.php?search="+search+"$type=search",
-        }).done(function(data){
+          url: "myclass.php?search=" + search + "&type=searching",
+        }).done(function (data) {
           alert(data);
         });
-     }
-    //  $(document).ready(function(){
-    //   $("#search").keyup(function(){
-    //     var input = $(this).val();
-    //     //alert(input);
-    //     if(input !=""){
-    //       url:"myclass.php",
-    //       method="POST",
-    //       data : {input:input},
+      }
+      //  $(document).ready(function(){
+      //   $("#search").keyup(function(){
+      //     var input = $(this).val();
+      //     //alert(input);
+      //     if(input !=""){
+      //       url:"myclass.php",
+      //       method="POST",
+      //       data : {input:input},
 
-    //       success:function(data){
-    //         $("#searchresult").html(data);
-    //       }
-    //     }else{
-    //       $("#searchresult").css("display", "none");
-    //     }
-    //   });
-    //  })
+      //       success:function(data){
+      //         $("#searchresult").html(data);
+      //       }
+      //     }else{
+      //       $("#searchresult").css("display", "none");
+      //     }
+      //   });
+      //  })
+
+
+      function searchLoadContact() {
+        $("#people").html("");
+        $.ajax({
+          type: "get",
+          url: "myclass.php?type=contact",
+        }).done(function (data) {
+          var user = JSON.parse(data);
+          //alert(data);
+          var i = 0;
+          while (i < user.length) {
+            $("#people").append(
+              person(
+                user[i]["name"],
+                user[i]["email"],
+                user[i]["picture"],
+                user[i]["time"],
+                user[i]["id"]
+              )
+            );
+            i++;
+          }
+        });
+      }
+      function mySearch(search){
+        loadContact(search)
+      }
     </script>
   </body>
 </html>
