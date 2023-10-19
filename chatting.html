@@ -17,6 +17,8 @@
     <div class="wrapper">
       <div class="container">
         <div class="left">
+            <input type="text" name="email" id="email" />
+            <button type="button" style="padding-bottom:5px; border-radius: 10px;" onclick="addContact()">Add Contact</button>
           <div class="top">
             <form action="">
               <input
@@ -32,8 +34,7 @@
         </div>
         <div style="margin-left: 70px">
           <form method="POST">
-            <input type="text" name="email" id="email" />
-            <button type="button" onclick="addContact()">Add Contact</button>
+          
           </form>
         </div>
         <div class="right">
@@ -133,8 +134,9 @@
         $("#people").html("");
         $.ajax({
           type: "get",
-          url: "myclass.php?type=contact&search"+search,
+          url: "myclass.php?type=contact&search="+search
         }).done(function (data) {
+          localStorage.setItem('mycontacts', data)
           var user = JSON.parse(data);
           //alert(data);
           var i = 0;
@@ -310,16 +312,16 @@
           alert(data);
         });
       }
-      function mySearch() {
-        var search = document.getElementById("search").value;
-        //alert(search)
-        $.ajax({
-          type: "get",
-          url: "myclass.php?search=" + search + "&type=searching",
-        }).done(function (data) {
-          alert(data);
-        });
-      }
+      // function mySearch() {
+      //   var search = document.getElementById("search").value;
+      //   //alert(search)
+      //   $.ajax({
+      //     type: "get",
+      //     url: "myclass.php?search=" + search + "&type=searching",
+      //   }).done(function (data) {
+      //     alert(data);
+      //   });
+      // }
       //  $(document).ready(function(){
       //   $("#search").keyup(function(){
       //     var input = $(this).val();
